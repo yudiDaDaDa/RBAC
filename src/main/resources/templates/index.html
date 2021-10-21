@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <style>
+        #left-nav{
+            width: 200px;
+            height: 800px;
+            float: left;
+        }
+        #right-content{
+            width: 1300px;
+            height: 800px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="left-nav">
+<ul class="layui-nav layui-nav-tree" lay-filter="test">
+    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  <#call getNav(menuList,0)/>
+</ul>
+</div>
+<!-- 你的 HTML 代码 -->
+<div id="right-content">
+    <iframe width="1300px" height="800px" src="menuIndex.html" style="border: 1px solid #333333" name="option"></iframe>
+</div>
+
+</body>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element
+    });
+
+
+</script>
+</html>
+<#function getNav menuList temp>
+<#list menuList as menu>
+<#if (menu.childs?size > 0 || (temp == 0))>
+ <li class="layui-nav-item">
+    <#if (menu.childs?size > 0)>
+    <a href="javascript:;">${menu.name}</a>
+     <#else> <a href="/menuGo?id=${menu.id}" target="option">${menu.name}</a>
+    </#if>
+
+    <#if (menu.childs?size > 0)>
+    <dl class="layui-nav-child">
+        <#call getNav(menu.childs,temp+1)>
+    </dl>
+    </#if>
+</li>
+<#else>
+<dd><a href="/menuGo?id=${menu.id}" target="option">${menu.name}</a></dd>
+</#if>
+</#list>
+</#function>

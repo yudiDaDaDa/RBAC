@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+<table class="layui-table" lay-data="{height:315,  page:true, id:'test'}" lay-filter="test">
+    <thead>
+    <tr>
+        <th lay-data="{field:'id',width:80, sort: true}">ID</th>
+        <th lay-data="{field:'name',width:160}">题目</th>
+        <th lay-data="{field:'createTime',width:160, sort: true}">创建时间</th>
+        <th lay-data="{field:'modifyTime',width:160,sort: true}">修改时间</th>
+        <th lay-data="{field:'status',width:160}">状态</th>
+        <th lay-data="{field:'modify',width:160}">操作</th>
+    </tr>
+    </thead>
+    <#list questionList as question>
+    <tr>
+        <td>${question.id}</td>
+        <td>${question.name}</td>
+        <td>${question.createTime?date}</td>
+        <td>${question.modifyTime?date}</td>
+        <td>${question.status}</td>
+        <td><input type="button" value="修改" style="border: none;outline: none" onclick="modifyQst('${question.id}')"></td>
+    </tr>
+</#list>
+</table>
+</body>
+</html>
+<script src="/layui/layui.js"></script>
+<script>
+    function modifyQst(id){
+        location = "/modifyQst?id="+id;
+    }
+</script>

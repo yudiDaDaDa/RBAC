@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudioj_login</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<form class="layui-form" method="post" action="/userLogin" style="margin: auto;width: 500px;margin-top: 300px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密&nbsp码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo" type="submit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('form',function (){
+        var form = layui.form
+    })
+
+    layui.use('layer',function (){
+        var layer = layui.layer;
+         if("${msg!}"!="$"+"{msg!}"&&"${msg!}".trim()!=0){
+            layer.msg("${msg!}",{time:"1000",offset:"30px",anim:1})
+         }
+    })
+</script>
+</html>

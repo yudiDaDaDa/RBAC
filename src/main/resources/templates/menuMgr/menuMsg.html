@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj menu</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+<table class="layui-table" lay-data="{height:315,  page:true, id:'test'}" lay-filter="test">
+    <thead>
+    <tr>
+        <th lay-data="{field:'id',width:80, sort: true}">ID</th>
+        <th lay-data="{field:'name',width:160}">菜单名</th>
+        <th lay-data="{field:'createTime',width:160, sort: true}">创建时间</th>
+        <th lay-data="{field:'modifyTime',width:160,sort: true}">修改时间</th>
+        <th lay-data="{field:'auth',width:160,sort: true}">权限ID</th>
+        <th lay-data="{field:'parentId',width:160, sort: true}">父菜单ID</th>
+        <th lay-data="{field:'status'}">状态</th>
+        <th lay-data="{field:'url'}">链接</th>
+        <th lay-data="{field:'edit'}">操作</th>
+    </tr>
+    </thead>
+    <#list menuList as menu>
+    <tr>
+        <td>${menu.id}</td>
+        <td>${menu.name}</td>
+        <td>${menu.createTime?date}</td>
+        <td>${menu.modifyTime?date}</td>
+        <td>${menu.authId}</td>
+        <td>${menu.parentId}</td>
+        <td>${menu.status}</td>
+        <td>${menu.url}</td>
+        <td><input type="button" value="修改" style="outline: none;border: none" onclick="menuModify('${menu.id}')"></td>
+    </tr>
+</#list>
+</table>
+</body>
+<script src="/layui/layui.js"></script>
+<script>
+    function menuModify(id){
+        location = "/menuModify?id="+id;
+    }
+</script>
+</html>

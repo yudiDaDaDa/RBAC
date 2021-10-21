@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<div style="margin-left:250px;width:600px;margin-top: 200px;margin-left: 400px">
+    <form class="layui-form" action="/menuModifySub" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单ID</label>
+            <div class="layui-input-block">
+                <input type="text" name="id" placeholder="请输入菜单ID" autocomplete="off" readonly="readonly" class="layui-input" value="${modifyMenu.id}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input" value="${modifyMenu.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单路径</label>
+            <div class="layui-input-block">
+                <input type="text" name="url" placeholder="请输入菜单路径" autocomplete="off"  class="layui-input" value="${modifyMenu.url}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="正常" title="正常" <#if (modifyMenu.status == "正常") >checked</#if> >
+            <input type="radio" name="status" value="冻结" title="冻结" <#if (modifyMenu.status == "冻结") >checked</#if>>
+</div>
+</div>
+                <div class="layui-form-item">
+    <label class="layui-form-label">父菜单ID</label>
+    <div class="layui-input-block">
+        <input type="text" name="parentId" placeholder="请输入父菜单ID" autocomplete="off"  class="layui-input" value="${modifyMenu.parentId}">
+    </div>
+                </div>
+        <div class="layui-form-item">
+    <label class="layui-form-label">权限ID</label>
+    <div class="layui-input-block">
+        <input type="text" name="authId" placeholder="请输入权限ID" autocomplete="off"  class="layui-input" value="${modifyMenu.authId}">
+    </div>
+</div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+
+</div>
+</form>
+</div>
+</body>
+</html>

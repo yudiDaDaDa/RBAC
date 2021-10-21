@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+   <script src="/jquery/jquery-3.6.0.min.js"></script>
+</head>
+   <style>
+       #code{
+           width: 800px;
+           height: 700px;
+         float: left;
+       }
+   </style>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">题目描述</li>
+        <li>评论</li>
+        <li>题解</li>
+        <li>提交记录</li>
+    </ul>
+    <div class="layui-tab-content" style="width: 400px;float: left">
+        <div class="layui-tab-item layui-show">&nbsp&nbsp&nbsp&nbsp${question.itd}</div>
+        <div class="layui-tab-item">暂无评论</div>
+        <div class="layui-tab-item">暂无题解</div>
+        <div class="layui-tab-item">暂无提交记录</div>
+    </div>
+    <div id="code">
+        <pre class="layui-code">
+            <textarea id="codeArea" style="border: none;position: relative;right: 100px" cols="80" rows="25" ></textarea>
+    </pre>
+        <div style="width: 300px;margin-left: 700px">
+            <button type="button" class="layui-btn" onclick="testCodeSub()">执行代码</button>
+            <button type="button" class="layui-btn layui-btn-normal" onclick="AnsCodeSub()">提交</button>
+        </div>
+       <span>输出台:</span> <pre class="layui-code">
+        <div id="stdOut"></div>
+        </pre>
+    </div>
+</div>
+</body>
+</html>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('code', function(){ //加载code模块
+        layui.code(); //引用code方法
+    });
+    function testCodeSub(){
+       var code = $("#codeArea").val();
+        $.ajax({
+            url:"/questionTest",
+            type:"post",
+            data:{'code':code,'id':"${question.id}"},
+            success:function (data){
+               document.getElementById("stdOut").innerHTML=data;
+            }
+        })
+    }
+</script>

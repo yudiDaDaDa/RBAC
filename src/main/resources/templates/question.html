@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+<table class="layui-table" lay-data="{height:315,  page:true, id:'test'}" lay-filter="test">
+    <thead>
+    <tr>
+        <th lay-data="{field:'id',width:80, sort: true}">ID</th>
+        <th lay-data="{field:'name',width:160}">题目</th>
+        <th lay-data="{field:'createTime',width:160, sort: true}">创建时间</th>
+        <th lay-data="{field:'modifyTime',width:160,sort: true}">修改时间</th>
+        <th lay-data="{field:'status'}">状态</th>
+    </tr>
+    </thead>
+    <#list questionList as question>
+    <tr>
+        <td>${question.id}</td>
+        <td><a href="/quGo?id=${question.id}">${question.name}</a></td>
+        <td>${question.createTime?date}</td>
+        <td>${question.modifyTime?date}</td>
+        <td>${question.status}</td>
+    </tr>
+</#list>
+</table>
+</body>
+</html>
+<script src="/layui/layui.js"></script>

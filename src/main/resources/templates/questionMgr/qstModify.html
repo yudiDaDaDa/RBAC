@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi Oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/jquery/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div style="margin-left:250px;width:600px;margin-top: 10px">
+<form class="layui-form" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">题&nbsp目&nbspI&nbspD</label>
+        <div class="layui-input-block">
+            <input type="text" placeholder="请输入题目名称" autocomplete="off" disabled class="layui-input" value="${question.id}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入题目名称" autocomplete="off" class="layui-input" value="${question.name}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目描述</label>
+        <div class="layui-input-block">
+            <textarea name="desc" placeholder="请输入题目描述" class="layui-textarea" >${question.itd}</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目状态</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status" value="正常" title="正常" <#if (question.status == "正常") >checked</#if> >
+            <input type="radio" name="status" value="冻结" title="冻结" <#if (question.status == "冻结") >checked</#if>>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">题目代码</label>
+        <div class="layui-input-block">
+            <textarea name="desc" placeholder="请输入代码" class="layui-textarea" id="ans_code">${question.ansCode}</textarea>
+        </div>
+    </div>
+<div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">测试用例</label>
+    <div class="layui-input-block" style="height:50px">
+        <textarea name="desc" placeholder="请输入测试用例" class="layui-textarea" style="min-height: 50px">${question.ansTest}</textarea>
+    </div>
+</div>
+<div class="layui-form-item layui-form-text" >
+    <label class="layui-form-label">判断用例</label>
+    <div class="layui-input-block"  style="height:50px">
+        <textarea name="desc" placeholder="请输入判断用例" class="layui-textarea" style="min-height: 50px" id="ans_judge">${question.ansJudge}</textarea>
+    </div>
+</div>
+<div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">题目答案</label>
+    <div class="layui-input-block" >
+        <textarea name="desc" id="ans" placeholder="请输入题目答案" class="layui-textarea" style="float: left;width: 80%">${question.ansPass}</textarea>
+        <button type="button" class="layui-btn" style="position: relative;top: 30px;left: 10px" onclick="getAns()">产生答案</button>
+    </div>
+</div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+
+    </div>
+</form>
+</div>
+</body>
+</html>
+<script src="/layui/layui.js"></script>
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+    });
+    function getAns(){
+        $.ajax({
+            type:"post",
+            url:"/ansBuild",
+            data:{'id':"${question.id}",'code':$("#ans_code").val(),'judge':$("#ans_judge").val},
+            success:function (data){
+                alert(data);
+              $("#ans").val(data);
+            }
+        })
+    }
+</script>
