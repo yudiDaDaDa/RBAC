@@ -110,4 +110,11 @@ public class MenuController {
         model.addAttribute("auth",auth);
         return "authMgr/authModify";
   }
+  @RequestMapping("/modifyRoleAuth")
+    public String modifyRoleAuth(@RequestParam("id") String id,Model model ){
+        Auth2Role auth2Role = auth2RoleService.findAuth2RoleByIdWithout(id);
+        if(auth2Role == null) return "menuIndex";
+        model.addAttribute("authRole",auth2Role);
+        return "roleAuthMgr/roleAuthModify";
+  }
 }

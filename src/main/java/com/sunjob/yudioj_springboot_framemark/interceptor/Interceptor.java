@@ -35,15 +35,18 @@ public class Interceptor implements HandlerInterceptor {
             case "/menuFreeze":
             case "/modifyAuth":
             case "/authFreeze":
+            case "/modifyRoleAuth":
             case "/quGo":return  isparamIdNull(request,response);
             case "/questionTest": return isquestionTestParamNull(request,response);
             case "/menuModifySub" : return isparamIdNull(request,response)&& isMenuParamNull(request,response);
             case "/addMenu":return isMenuParamNull(request,response);
             case "/addAuth":return isAuthNull(request,response);
             case "/authModifySub": return isparamIdNull(request,response)&&isAuthParamNull(request,response);
+            case "/authRoleModifySub":return isparamIdNull(request,response)&&isAuthRoleParamNull(request,response);
         }
         return true;
     }
+
 
 
 
@@ -138,6 +141,16 @@ public class Interceptor implements HandlerInterceptor {
         String status = request.getParameter("status");
         if(name ==null || name.trim().length() ==0 ||
                 status == null || status.trim().length() ==0){
+            request.getRequestDispatcher("menuIndex.html").forward(request,response);
+            return false;
+        }
+        return true;
+    }
+    private boolean isAuthRoleParamNull(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String authId = request.getParameter("authId");
+        String roleId = request.getParameter("roleId");
+        String status = request.getParameter("status");
+        if(status==null || status.trim().length()==0||authId==null || authId.trim().length()==0 || roleId == null || roleId.trim().length()==0){
             request.getRequestDispatcher("menuIndex.html").forward(request,response);
             return false;
         }

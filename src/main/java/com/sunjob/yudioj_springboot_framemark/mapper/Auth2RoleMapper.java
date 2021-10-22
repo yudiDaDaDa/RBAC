@@ -43,4 +43,17 @@ public interface Auth2RoleMapper {
             @Result(property = "modifyTime",column = "modify_time"),
     })
     List<Auth2Role> findAllAuth2RoleWithout();
+    @Select("select * from t_sys_auth2role where id = #{id}")
+    @Results({
+            @Result(property = "id",column = "id"),
+            @Result(property = "roleId",column = "role_id"),
+            @Result(property = "authId",column = "auth_id"),
+            @Result(property = "createTime",column = "create_time"),
+            @Result(property = "modifyTime",column = "modify_time"),
+    })
+    Auth2Role findAuth2RoleByIdWithout(String id);
+
+    @Update("update t_sys_auth2role set role_id = #{roleId},auth_id = #{authId},status = #{status},modify_time = #{modifyTime} where id = #{id}")
+    boolean authRoleModify(Auth2Role auth2Role);
+
 }
