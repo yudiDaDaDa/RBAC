@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yudi oj</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<div style="margin-left:250px;width:600px;margin-top: 200px;margin-left: 400px">
+    <form class="layui-form" action="/userRoleModifySub" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户角色ID</label>
+            <div class="layui-input-block">
+                <input type="text" name="id" placeholder="请输入用户角色ID" autocomplete="off" readonly="readonly" class="layui-input" value="${userRole.id}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户角色状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="正常" title="正常" <#if (userRole.status == "正常") >checked</#if> >
+            <input type="radio" name="status" value="冻结" title="冻结" <#if (userRole.status == "冻结") >checked</#if>>
+</div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">用户ID</label>
+    <div class="layui-input-block">
+        <input type="text" name="userId" placeholder="请输入用户ID" autocomplete="off"  class="layui-input" value="${userRole.userId}">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">角色ID</label>
+    <div class="layui-input-block">
+        <input type="text" name="roleId" placeholder="请输入角色ID" autocomplete="off"  class="layui-input" value="${userRole.roleId}">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+</div>
+</form>
+</div>
+</body>
+</html>

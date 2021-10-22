@@ -29,6 +29,7 @@ public class Interceptor implements HandlerInterceptor {
         System.out.println(url);
         //根据路径进行不同逻辑的前置判断
         switch (url){
+            case "/modifyUserRole":
             case "/menuGo":
             case "/modifyQst":
             case "/menuModify":
@@ -36,7 +37,10 @@ public class Interceptor implements HandlerInterceptor {
             case "/modifyAuth":
             case "/authFreeze":
             case "/modifyRoleAuth":
-                case "/authRoleFreeze":
+            case "/authRoleFreeze":
+            case "/userRoleFreeze":
+            case "/modifyUser":
+            case "/userFreeze":
             case "/quGo":return  isparamIdNull(request,response);
             case "/questionTest": return isquestionTestParamNull(request,response);
             case "/menuModifySub" : return isparamIdNull(request,response)&& isMenuParamNull(request,response);
@@ -44,7 +48,11 @@ public class Interceptor implements HandlerInterceptor {
             case "/addAuth":return isAuthNull(request,response);
             case "/authModifySub": return isparamIdNull(request,response)&&isAuthParamNull(request,response);
             case "/authRoleModifySub":return isparamIdNull(request,response)&&isAuthRoleParamNull(request,response);
-            case "addauthRole": return isAuthRoleParamNull(request,response);
+            case "/addauthRole": return isAuthRoleParamNull(request,response);
+            case "/userRoleModifySub": return isparamIdNull(request,response)&&isUserRoleParamNull(request,response);
+            case "/adduserRole" :return isUserRoleParamNull(request,response);
+            case "/userModifySub":return isparamIdNull(request,response)&&isUserParamNull(request,response);
+            case "/addUser" :return isUserParamNull(request,response);
         }
         return true;
     }
@@ -153,6 +161,26 @@ public class Interceptor implements HandlerInterceptor {
         String roleId = request.getParameter("roleId");
         String status = request.getParameter("status");
         if(status==null || status.trim().length()==0||authId==null || authId.trim().length()==0 || roleId == null || roleId.trim().length()==0){
+            request.getRequestDispatcher("menuIndex.html").forward(request,response);
+            return false;
+        }
+        return true;
+    }
+    private boolean isUserRoleParamNull(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userId = request.getParameter("userId");
+        String roleId = request.getParameter("roleId");
+        String status = request.getParameter("status");
+        if(status==null || status.trim().length()==0||userId==null || userId.trim().length()==0 || roleId == null || roleId.trim().length()==0){
+            request.getRequestDispatcher("menuIndex.html").forward(request,response);
+            return false;
+        }
+        return true;
+    }
+    private boolean isUserParamNull(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String pwd = request.getParameter("pwd");
+        String status = request.getParameter("status");
+        if(name == null || name.trim().length()==0 || pwd==null || pwd.trim().length()==0 || status==null || status.trim().length()==0){
             request.getRequestDispatcher("menuIndex.html").forward(request,response);
             return false;
         }

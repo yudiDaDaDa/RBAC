@@ -10,23 +10,23 @@
     <thead>
     <tr>
         <th lay-data="{field:'id',width:80, sort: true}">ID</th>
-        <th lay-data="{field:'name',width:160}">用户名</th>
-        <th lay-data="{field:'password',width:160}">密码</th>
+        <th lay-data="{field:'userId',width:160, sort: true}">用户ID</th>
+        <th lay-data="{field:'roleId',width:160, sort: true}">角色ID</th>
         <th lay-data="{field:'createTime',width:160, sort: true}">创建时间</th>
         <th lay-data="{field:'modifyTime',width:160,sort: true}">修改时间</th>
         <th lay-data="{field:'status',width:160}">状态</th>
         <th lay-data="{field:'modify',width:160}">操作</th>
     </tr>
     </thead>
-    <#list userList as user>
+    <#list userRoleList as userRole>
     <tr>
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.pwd}</td>
-        <td>${user.createTime?date}</td>
-        <td>${user.modifyTime?date}</td>
-        <td>${user.status}</td>
-        <td><input type="button" value="修改" style="border: none;outline: none" onclick="modifyUser('${user.id}')"></td>
+        <td>${userRole.id}</td>
+        <td>${userRole.userId}</td>
+        <td>${userRole.roleId}</td>
+        <td>${userRole.createTime?date}</td>
+        <td>${userRole.modifyTime?date}</td>
+        <td>${userRole.status}</td>
+        <td><input type="button" value="修改" style="border: none;outline: none" onclick="modifyuserRole('${userRole.id}')"></td>
     </tr>
 </#list>
 </table>
@@ -34,7 +34,7 @@
 </html>
 <script src="/layui/layui.js"></script>
 <script>
-    function modifyUser(id){
-        location = "/modifyUser?id="+id;
+    function modifyuserRole(id){
+        location = "/modifyUserRole?id="+id;
     }
 </script>

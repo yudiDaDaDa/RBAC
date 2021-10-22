@@ -25,6 +25,8 @@ public class MenuController {
     UserService userService;
     @Autowired
     Auth2RoleService auth2RoleService;
+    @Autowired
+    Role2UserService role2UserService;
     @RequestMapping("/index")
     public String index(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();   //根据登录获取的用户进行菜单查询
@@ -54,13 +56,17 @@ public class MenuController {
            case "7":
            case "1":model.addAttribute("questionList",questionService.selectAll());
            break;
-           case "13":
-           case "12":model.addAttribute("userList",userService.findALlUser());
+           case "13":model.addAttribute("userList",userService.findALlUser());
+           break;
+           case "12":model.addAttribute("userList",userService.findAllUserWithout());
            break;
            case "1634645800287": model.addAttribute("role2authList",auth2RoleService.findAllAuth2Role());
            break;
            case "1634645703157": model.addAttribute("role2authList",auth2RoleService.findAllAuth2RoleWithout());
-
+           break;
+           case "1634872940067":model.addAttribute("userRoleList",role2UserService.findAllRole2UserWithout());
+           break;
+           case "1634872980195":model.addAttribute("userRoleList",role2UserService.findAllRole2User());
        }
        return menu.getUrl();
     }
@@ -120,5 +126,19 @@ public class MenuController {
         model.addAttribute("authRole",auth2Role);
         return "roleAuthMgr/roleAuthModify";
   }
+ @RequestMapping("/modifyUserRole")
+    public String modifyUserRole(@RequestParam("id") String id,Model model){
+        Role2User role2User = role2UserService.findRole2UserById(id);
+        if(role2User==null) return "menuIndex";
+        model.addAttribute("userRole",role2User);
+        return "userRoleMgr/userRoleModify";
 
+ }
+ @RequestMapping("/modifyUser")
+    public  String modifyUser(@RequestParam("id") String id,Model model){
+        User user = userService.findUserById(id);
+        if(user==null) return "menuIndex";
+        model.addAttribute("user",user);
+        return "userMgr/userModify";
+ }
 }

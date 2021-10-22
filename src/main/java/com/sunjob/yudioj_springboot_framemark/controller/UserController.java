@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,5 +36,22 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("user",user); //登录成功 跳转到主页
         return "redirect:/index";
+    }
+
+    @RequestMapping("/userModifySub")
+    public String modifyUser(User user){
+        boolean result = userService.modifyUser(user);
+        return "redirect:menuGo?id=12";
+    }
+    @RequestMapping("/userFreeze")
+    @ResponseBody
+    public  String userFreeze(@RequestParam("id") String id){
+        boolean result = userService.userFreeze(id);
+        return result+"";
+    }
+    @RequestMapping("/addUser")
+    public String addUser(User user){
+        boolean result = userService.addUser(user);
+        return "redirect:menuGo?id=13";
     }
 }

@@ -9,4 +9,9 @@ import java.util.List;
 public interface UserService {
     User userLogin(String name,String password);
     List<User> findALlUser();
+    List<User> findAllUserWithout();
+    User findUserById(String id);
+    boolean modifyUser(User user);
+    boolean userFreeze(String id);
+    boolean addUser(User user);
 }
