@@ -59,4 +59,7 @@ public interface Auth2RoleMapper {
 
     @Update("update t_sys_auth2role set status = '冻结',modify_time = #{modifyTime} where id = #{id}")
     boolean FreezeAuthRole(String id, Date modifyTime);
+
+    @Insert("insert into t_sys_auth2role (id,create_time,modify_time,auth_id,role_id,status)values(#{id},#{createTime},#{modifyTime},#{authId},#{roleId},#{status})")
+    boolean addAuthRole(Auth2Role auth2Role);
 }

@@ -12,4 +12,5 @@ public interface Auth2RoleService {
     Auth2Role findAuth2RoleByIdWithout(String id);
     boolean authRoleModify(Auth2Role auth2Role);
     boolean freezeAuthRole(String id);
+    boolean addAuthRole(Auth2Role auth2Role);
 }

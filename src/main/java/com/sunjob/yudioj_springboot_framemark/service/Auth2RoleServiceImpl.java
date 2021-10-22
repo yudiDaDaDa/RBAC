@@ -38,4 +38,13 @@ public class Auth2RoleServiceImpl implements Auth2RoleService{
         return auth2RoleMapper.FreezeAuthRole(id,new Date());
     }
 
+    @Override
+    public boolean addAuthRole(Auth2Role auth2Role) {
+        Date date = new Date();
+        auth2Role.setModifyTime(date);
+        auth2Role.setCreateTime(date);
+        auth2Role.setId(System.currentTimeMillis()+"");
+        return auth2RoleMapper.addAuthRole(auth2Role);
+    }
+
 }

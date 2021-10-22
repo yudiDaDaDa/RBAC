@@ -44,6 +44,7 @@ public class Interceptor implements HandlerInterceptor {
             case "/addAuth":return isAuthNull(request,response);
             case "/authModifySub": return isparamIdNull(request,response)&&isAuthParamNull(request,response);
             case "/authRoleModifySub":return isparamIdNull(request,response)&&isAuthRoleParamNull(request,response);
+            case "addauthRole": return isAuthRoleParamNull(request,response);
         }
         return true;
     }

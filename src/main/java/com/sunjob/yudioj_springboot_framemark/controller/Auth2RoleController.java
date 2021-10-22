@@ -17,10 +17,17 @@ public class Auth2RoleController {
         boolean result = auth2RoleService.authRoleModify(auth2Role);
         return "redirect:menuGo?id=1634645703157";
     }
+
     @RequestMapping("/authRoleFreeze")
     @ResponseBody
     public String authRoleFreeze(@RequestParam("id") String id){
         boolean result = auth2RoleService.freezeAuthRole(id);
         return result+"";
+    }
+
+    @RequestMapping("/addAuthRole")
+    public String addAuthRole(Auth2Role auth2Role){
+        boolean result= auth2RoleService.addAuthRole(auth2Role);
+        return "redirect:menuGo?id=1634645800287";
     }
 }
