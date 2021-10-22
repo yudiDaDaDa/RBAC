@@ -36,6 +36,7 @@ public class Interceptor implements HandlerInterceptor {
             case "/modifyAuth":
             case "/authFreeze":
             case "/modifyRoleAuth":
+                case "/authRoleFreeze":
             case "/quGo":return  isparamIdNull(request,response);
             case "/questionTest": return isquestionTestParamNull(request,response);
             case "/menuModifySub" : return isparamIdNull(request,response)&& isMenuParamNull(request,response);

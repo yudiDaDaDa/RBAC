@@ -57,7 +57,10 @@ public class MenuController {
            case "13":
            case "12":model.addAttribute("userList",userService.findALlUser());
            break;
+           case "1634645800287": model.addAttribute("role2authList",auth2RoleService.findAllAuth2Role());
+           break;
            case "1634645703157": model.addAttribute("role2authList",auth2RoleService.findAllAuth2RoleWithout());
+
        }
        return menu.getUrl();
     }
@@ -117,4 +120,5 @@ public class MenuController {
         model.addAttribute("authRole",auth2Role);
         return "roleAuthMgr/roleAuthModify";
   }
+
 }

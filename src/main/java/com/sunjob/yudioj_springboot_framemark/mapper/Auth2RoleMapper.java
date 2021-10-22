@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -56,4 +57,6 @@ public interface Auth2RoleMapper {
     @Update("update t_sys_auth2role set role_id = #{roleId},auth_id = #{authId},status = #{status},modify_time = #{modifyTime} where id = #{id}")
     boolean authRoleModify(Auth2Role auth2Role);
 
+    @Update("update t_sys_auth2role set status = '冻结',modify_time = #{modifyTime} where id = #{id}")
+    boolean FreezeAuthRole(String id, Date modifyTime);
 }

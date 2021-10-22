@@ -33,4 +33,9 @@ public class Auth2RoleServiceImpl implements Auth2RoleService{
         return auth2RoleMapper.authRoleModify(auth2Role);
     }
 
+    @Override
+    public boolean freezeAuthRole(String id) {
+        return auth2RoleMapper.FreezeAuthRole(id,new Date());
+    }
+
 }

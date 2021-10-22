@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>yudi oj</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/jquery/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <table class="layui-table" lay-data="{height:315,  page:true, id:'test'}" lay-filter="test">
@@ -26,7 +27,7 @@
         <td>${role2auth.createTime?date}</td>
         <td>${role2auth.modifyTime?date}</td>
         <td>${role2auth.status}</td>
-        <td><input type="button" value="修改" style="border: none;outline: none" onclick="modifyauthRole('${role2auth.id}')"></td>
+        <td><input type="button" value="删除" style="border: none;outline: none" onclick="authRoleFreeze('${role2auth.id}')"></td>
     </tr>
 </#list>
 </table>
@@ -34,7 +35,24 @@
 </html>
 <script src="/layui/layui.js"></script>
 <script>
-    function modifyauthRole(id){
-        location = "/modifyRoleAuth?id="+id;
+    function authRoleFreeze(id){
+        $.ajax({
+            type:"post",
+            url:"/authRoleFreeze",
+            data:{'id':id},
+            success:function (data){
+                layui.use('layer',function (){
+                    var layer = layui.layer;
+                    if(data=="true")
+                        layer.msg("删除成功",{time:"1000",offset:"30px",anim:1})
+                    else   layer.msg("删除失败",{time:"1000",offset:"30px",anim:1})
+                    window.setTimeout(function (){
+                        location="menuGo?id=1634645800287"
+                    },1300)
+                }).bind(this)
+            }
+        })
+
     }
+
 </script>
