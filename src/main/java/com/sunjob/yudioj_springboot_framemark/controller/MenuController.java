@@ -16,6 +16,8 @@ import java.util.List;
 @Controller
 public class MenuController {
     @Autowired
+    RoleService roleService;
+    @Autowired
     MenuService menuService;
     @Autowired
     QuestionService questionService;
@@ -67,6 +69,9 @@ public class MenuController {
            case "1634872940067":model.addAttribute("userRoleList",role2UserService.findAllRole2UserWithout());
            break;
            case "1634872980195":model.addAttribute("userRoleList",role2UserService.findAllRole2User());
+           case "1635504753956":model.addAttribute("roleList",roleService.getALlRoleWithout());
+           break;
+           case "1635504787725":model.addAttribute("roleList",roleService.getALlRole());
        }
        return menu.getUrl();
     }

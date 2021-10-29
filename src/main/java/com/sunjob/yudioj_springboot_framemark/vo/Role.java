@@ -9,7 +9,7 @@ import java.util.Set;
 @Component
 public class Role {
     private String name;
-    private int id;
+    private String id;
     private Date createTime;
     private Date modifyTime;
     private String status;
@@ -31,11 +31,11 @@ public class Role {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
